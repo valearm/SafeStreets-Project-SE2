@@ -1,6 +1,6 @@
 # Armenante Capaldo Di Salvo Safe Streets Project
 
-# <img src="/LOGO.jpg" align="left" height="100px" /></br></br></br>
+# <img src="/LOGO.jpg" align="left" height="200px" /></br></br></br>
 
 
 
