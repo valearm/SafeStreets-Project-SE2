@@ -90,24 +90,216 @@ The goal of this SafeStreets’ second advanced function is to provide correct i
 
 \subsubsection{Goals} %subsubsection goals
 
+\vspace{5mm}
+Here are summarized goals that must be achieved by SafeStreets:
+\vspace{2mm}
+
+\textbf{[G1]}: Users can be uniquely identified, thanks to the completion of the Registration Process.\vspace{1mm}
+
+\textbf{[G2]}: Authorities can be uniquely identified, thanks to the completion of Registration Process.
+\vspace{1mm}
+
+\textbf{[G3]}: Authority members can be uniquely identified, thanks to the completion of Registration Process.
+\vspace{1mm}
+
+\textbf{[G4]}: Allows users to notify authorities when traffic violations occur.
+\vspace{1mm}
+
+\textbf{[G5]}: Allows authority member to receive the notifications about traffic violations in order to increase the local security.
+\vspace{1mm}
+
+\textbf{[G6]}: Allows end users to mine information on traffic violations that has been received and build some statistics.
+\vspace{1mm}
+
+\textbf{[G7]}: Allows authorities to mine information on traffic violations that has been received and build some statistics.\vspace{1mm}
+
+\textbf{[G8]}: Builds a cross information analysis between municipality’s data and itself data in order to improve reliability of the service and suggest to municipality possible interventions. \vspace{1mm}
+
+\textbf{[G9]}: Allows municipality (in particular local police) to retrieve traffic violations in order to generate relative traffic tickets.\vspace{1mm}
+
+\textbf{[G10]}: Builds statistics using information related to emitted traffic tickets.
+\vspace{5mm}
+\subsection{Definition, Acronyms and Abbreviations}
+\vspace{5mm}
+\subsubsection{Definition}
+\vspace{2mm}
+\begin{flushleft}
+
+\textbf{Customer:} It is used inside the document when a functionality is ref
+erred to End Users, Authority and Authority members.
+\vspace{2mm}
+
+\textbf{Hardened Database Model:} ardening refers to providing various means of protection in a computer system. 
+
+\end{flushleft}
+
+\subsubsection{Acronyms}
+\vspace{2mm}
+\begin{flushleft}
+
+\textbf{GPS} – Global Positioning System
+\vspace{2mm}\\
+
+\textbf{RASD} – Requirement Analysis and Specification Document 
+\vspace{2mm}\\
 
 
+\textbf{SS} - SafeStreets
+\vspace{2mm}\\
 
 
+\textbf{DB} - Database
+\vspace{2mm}\\
 
 
+\textbf{AI} - Artificial Intelligence
+\end{flushleft}
+
+\newpage
+
+\subsubsection{Abbreviations}
+\vspace{2mm}
+\begin{flushleft}
+
+\textbf{[Gn]} – n-goal 
+\vspace{2mm}\\
+\textbf{[Dn]} – n-domain assumption 
+\vspace{2mm}\\
+\textbf{[Rn]} – n-functional requirement 
+\vspace{2mm}\\
+
+\end{flushleft}
+\vspace{5mm}
+
+\subsection{Overview}
+\vspace{2mm}
+\begin{enumerate}
+\item \textbf{Introduction}: this section gives a general description of the software  and its characteristics.
+
+\item \textbf{Overall Descripion}: this section gives a general description of the software  and its characteristics.
+
+\item \textbf{3.    Specific Requirements}: this section gives a deep insight about the system’s main functionality, analyzing scenarios with their relative use-cases and includes requirements(functional and not). Event flows are model using sequence and state diagrams. 
+
+\item \textbf{Formal analysis using Alloy}: this section provides an Alloy model in order to give a detailed description of SS. Alloy is a declarative language used for specifying models of system and software.
 
 
+\end{enumerate}
+
+%CHAPTER 2
+\newpage
+
+\section{Overall Description}
+\hrule
+\vspace{8mm}
+
+\subsection{Product Perspective}
+\vspace{5mm}
+
+The whole system is going to be developed from scratch, according to the choices written in this document. The registration process is always costless. Moreover, access and utilization for End Users, Authority member and Authority is free. This important choice has been made because of SafeStreets aim is to improve the security related to traffic violations, not a reason for earning money. 
+
+\subsubsection{External Functions}
+\vspace{2mm}
+
+FindOwnerPlate is an external service that given in input a number plate then returns the owner of the vehicle. This service is well-integrated with SS and it is used to make faster traffic tickets process. 
+\subsection{Product Functions}
+Starting from the assumption that all the goals written in the previous part will be
+offered as functionalities of our system, we’re going to precisely list all the technical functions that the product will offer after its realization. 
+
+\newpage
+
+\subsubsection{Data storing management}
+\vspace{5mm}
+A relational DB is made available as storage memory for the whole ecosystem, in which all personal and non personal information, together with Customers’ gathered data, will be saved. It is mandatory to store data in a way that both security measures for sensitive information as well as fast and reliable access possibilities are guaranteed. To reach [G1] and [G2], it is necessary to exploit all the facilities provided by the Hardened Database model. The aim is to prevent data loss, leakage, or unauthorized access. At the registration time of each Customer, a new tuple will be created into the respectively table. Each Customer tuple will be uniquely linked to the Customer who own it. To reach that, a unique identifier will be generated for every Customer, to ensure that the associated data will be correctly extractable from the DB without ambiguities. The identifier assignment and the DB scanning mechanism will be chosen to be as fast as possible, since the system is going to be built for efficiently managing a huge amount of customers. Sequential DB scanning approaches as well as progressive identifiers assignment algorithms will be ignored during the choice. Finally, to ensure that any kind of information related to traffic violations are not altered, an encryption mechanism is put in place.
+
+\subsubsection{Data sharing management}
+\vspace{2mm}
+SafeStreets gives top priority to Customer’s privacy. No data and traffic violation notification access will be granted to other Users. When a user notifies a traffic violation to an authority member, this one will share some limited personal data such as unique code, name and surname. All traffic violations can be accessed by both authority and authority members and SafeStreets gives the possibility to filter traffic violations using specific criteria. Moreover, an authority member can access to a personal panel that shows past traffic violations managed by him. 
+
+\subsubsection{Traffic violations handler}
+\vspace{2mm}
+After that an end user sends traffic violations using SafeStreets service, then they are forwarded to the nearest authority member using a specific handler. SafeStreets uses an external service (such as Google Maps) to calculate the time spent by each authority member, in that zone, to arrive in traffic violation position. Then SafeStreets handler selects the authority member that has the minimum arrival time and this is done because often minimum distance, inside city, does not imply faster reaction.
+
+\subsubsection{Municipality collaboration service }
+\vspace{2mm}
+In order to ensure a correct collaboration with municipality, SafeStreets’ system administrator communicates to an employee of municipality how information must be sent. After that a protocol is chosen then SafeStreets is able to store all information inside its DB and uses a specific algorithm to cross information. Using that analysis, SS identifies unsafe areas and suggests some pre-set improvements to municipality through an e-mail. 
+\subsubsection{RecognizePlate}
+\vspace{2mm}
+RecognizePlate is a well-built algorithm that permits to SafeStreets to recognize plate from pictures sent by end users. When a picture is received, then RecognizePlate uses advanced AI techniques to recognize plate in the image and returns to SafeStreets the number plate.  
+\subsubsection{Traffic tickets handler}
+\vspace{2mm}
+When traffic notifications are sent to an authority member belonging to local police, SafeStreets using RecognizePlate and then FindOwnerPlate, explained before, is able to provide all useful information to make traffic tickets. Obviously, SafeStreets gives the possibility to discard a traffic notification in case it is considered a false notification.
+
+\subsection{User characteristics}
+\vspace{5mm}
+\subsubsection{Actor}
+\vspace{2mm}
+\begin{itemize}
+\item \textbf{Visitor}: a person which has
+not yet completed the Registration Process. The only thing which it is able to do is to start the registration process. 
+
+\item \textbf{User}: a person using SafeStreets services which has completed the Registration Process. 
+
+\item \textbf{Authority}: an employee of an institution who represents a specific station of the institution itself. 
+
+\item \textbf{Authority member}: a recognized authority member. It uses SafeStreets to receive notification related to traffic violations.
+
+\item \textbf{System Administrator}: a person in charge of keeping the system up to date, checking Authority policies and behaviors.
+
+\item \textbf{Device}: a device used to transfer significant, and well-represented, world Data to the system such as pictures of traffic violations.
+\end{itemize}
 
 
+\subsection{Assumptions, dependencies and contraints}
+\vspace{5mm}
+\subsubsection{Domain assumptions}
+\begin{flushleft}
 
+[D1] - Authorities correctly insert address of reference station.
+\vspace{2mm}
 
+[D2] - Each authority member must have an uniquely identifiable code.
+\vspace{2mm}
 
+[D3] - Devices used by end users are supposed to have a camera and an integrated and enabled GPS sensor.
+\vspace{2mm}
 
+[D4] - Sent position is assumed to be reliable and precise.
+\vspace{2mm}
 
+[D5] - System is supposed to be well integrated with reading plate algorithm that has been already designed and is correctly working.
+\vspace{2mm}
 
+[D6] - Each already uploaded notification of violation is every time correctly received and stored by the software system.
+\vspace{2mm}
+
+[D7] - Authority members specify correctly its availability status.
+\vspace{2mm}
+
+[D8] - The authority knows the local traffic laws and the related fines.
+\vspace{2mm}
+
+[D9] - Authority member that accept to provide an intervention must check the correctness of traffic violations notified and signals to Safe Streets.
+\vspace{2mm}
+
+[D10] - Municipality can fulfill the improvements suggested by the software.
+\vspace{2mm}
+
+[D11] - Municipality service is well integrated with SafeStreets.
+\vspace{2mm}
+
+[D12] - Municipality has an active mail system and it is periodically checked by its own employee.
+\vspace{2mm}
+
+[D13] - External service(FindOwnerPlate) is well integrated with SafeStreets that permits to retrieve personal data of the vehicle’s owner.
+\vspace{2mm}
+
+[D14] – Every time an authority member start his/her working hours, logs into the application setting properly their availability status.
+\vspace{2mm}
+
+\end{flushleft}
 
 \end{document}
+
 
 
 
