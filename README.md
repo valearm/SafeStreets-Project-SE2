@@ -13,7 +13,7 @@ More about contributors [here](https://github.com/valearm/ArmenanteCapaldoDiSalv
 
 ## About
 Software Engineering 2 Project.</br>
-Instructor : **Prof. Di Nitto**</br>
+Instructor : **Prof. Elisabetta Di Nitto**</br>
 Accademic Year: 2019/2020 </br>
 Topic of the project : Software system development for safety of streets service SafeStreets</br>
 More detail about the project [here](https://github.com/valearm/ArmenanteCapaldoDiSalvo/blob/master/SafeStreets%20Mandatory%20Project%20Assignment.pdf)
