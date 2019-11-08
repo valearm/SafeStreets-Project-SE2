@@ -26,9 +26,9 @@
 	     \vspace{5mm}
 		{\Large A.A 2019/2020} 
 		\vspace{5mm}\\
-		{\Large {\textbf{Requirements Analysis and Specifications Document}}}  
-		
-		 \includegraphics[scale=1]{Images/LOGO.jpg}
+		{\Large {\textbf{Requirements Analysis and Specifications Document}}}   
+		 
+		\includegraphics[scale=1]{Images/LOGO.jpg}
     \end{center}
           
 \begin{flushright}
@@ -37,9 +37,9 @@
 	 	{\huge {\Large \textbf{Authors:}}}
 	 	 
 	 	{Armenante Valerio}
-	 	 
+	 	
 	 	{Capaldo Marco}
-	 	 
+	 	
 	 	{Di Salvo Dario}
 	\end{flushright}
 
@@ -48,21 +48,21 @@
 
 \newpage
 \hrule
-\tableofcontents %the table of the contents 
+\hypersetup{hidelinks}\tableofcontents
 
 \vspace{0.5mm}
 \vspace{0.24mm}
 
 \newpage
 
-\section{Introduction} %section introduction
+\section{Introduction}
 \hrule
 \vspace{8mm}
-\subsection{Purpose} %subsection purpose
+\subsection{Purpose}
 \vspace{5mm}
        The aim of this document is to give an overview of the             requirements and specifications of the system to be developed. The goal of the document is to describe in detail all functional and non-functional requirements of the system, analysing the needs of the customer and explaining common use case scenarios. It will set a baseline for project planning and cost es- timation, giving a detailed insight to all stakeholders which include the SafeStreets Investors and engineers (present and future) involved in development, testing and maintenance. 
 
-\subsection{Scope} %subsection scope
+\subsection{Scope}
 \vspace{5mm}
 \subsubsection{Description of the given problem}
 \vspace{2mm}
@@ -88,10 +88,21 @@ The goal of this SafeStreets’ first advanced function is to improve more the s
 \vspace{3mm}
 The goal of this SafeStreets’ second advanced function is to provide correct information, related to traffic violations, to municipality(in particular local police). In this way, municipality can easily and correctly emits traffic tickets to the offenders. In order to ensure the correctness of information, SafeStreets implements an algorithm that recognize if a manipulation is occurred on uploaded data by users. Moreover, Safestreets builds some statistics regarding traffic tickets data such as a ranking of the most offenders, most common violations and the effectiveness of SafeStreets initiative
 \vspace{4mm}
+\begin{center}
+	
+	 	\vspace{4mm}
+	 	
+ 	 	\includegraphics[scale=0.75]{Images/Immagine.png}
+ 	 	\textbf{Table 1.1:} Phenomena table.
+	\end{center}
 
-\subsubsection{Goals} %subsubsection goals
 
+\newpage
+
+
+\subsubsection{Goals}
 \vspace{5mm}
+\begin{flushleft}
 Here are summarized goals that must be achieved by SafeStreets:
 \vspace{2mm}
 
@@ -100,7 +111,7 @@ Here are summarized goals that must be achieved by SafeStreets:
 \textbf{[G2]}: Authorities can be uniquely identified, thanks to the completion of Registration Process.
 \vspace{1mm}
 
-\textbf{[G3]}: Authority members can be uniquely identified, thanks to the completion of Registration Process.
+\textbf{[G3]}: Authority members can be uniquely identified, thanks to the completion of Authentication Process.
 \vspace{1mm}
 
 \textbf{[G4]}: Allows users to notify authorities when traffic violations occur.
@@ -119,6 +130,7 @@ Here are summarized goals that must be achieved by SafeStreets:
 \textbf{[G9]}: Allows municipality (in particular local police) to retrieve traffic violations in order to generate relative traffic tickets.\vspace{1mm}
 
 \textbf{[G10]}: Builds statistics using information related to emitted traffic tickets.
+\end{flushleft}
 \vspace{5mm}
 \subsection{Definition, Acronyms and Abbreviations}
 \vspace{5mm}
@@ -191,7 +203,7 @@ erred to End Users, Authority and Authority members.
 
 \item \textbf{Overall Descripion}: this section gives a general description of the software  and its characteristics.
 
-\item \textbf{3.    Specific Requirements}: this section gives a deep insight about the system’s main functionality, analyzing scenarios with their relative use-cases and includes requirements(functional and not). Event flows are model using sequence and state diagrams. 
+\item \textbf{3.	Specific Requirements}: this section gives a deep insight about the system’s main functionality, analyzing scenarios with their relative use-cases and includes requirements(functional and not). Event flows are model using sequence and state diagrams. 
 
 \item \textbf{Formal analysis using Alloy}: this section provides an Alloy model in order to give a detailed description of SS. Alloy is a declarative language used for specifying models of system and software.
 
@@ -215,8 +227,7 @@ The whole system is going to be developed from scratch, according to the choices
 
 FindOwnerPlate is an external service that given in input a number plate then returns the owner of the vehicle. This service is well-integrated with SS and it is used to make faster traffic tickets process. 
 \subsection{Product Functions}
-Starting from the assumption that all the goals written in the previous part will be
-offered as functionalities of our system, we’re going to precisely list all the technical functions that the product will offer after its realization. 
+Starting from the assumption that all the goals written in the previous part will be offered as functionalities of our system, we’re going to precisely list all the technical functions that the product will offer after its realization. 
 
 \newpage
 
@@ -244,17 +255,18 @@ When traffic notifications are sent to an authority member belonging to local po
 
 \subsection{User characteristics}
 \vspace{5mm}
-\subsubsection{Actor}
+\subsubsection{Actors}
 \vspace{2mm}
 \begin{itemize}
-\item \textbf{Visitor}: a person which has
-not yet completed the Registration Process. The only thing which it is able to do is to start the registration process. 
+\item \textbf{Visitor}: a person which has not yet completed the Registration Process. The only thing which it is able to do is to start the registration process. 
 
 \item \textbf{User}: a person using SafeStreets services which has completed the Registration Process. 
 
 \item \textbf{Authority}: an employee of an institution who represents a specific station of the institution itself. 
 
 \item \textbf{Authority member}: a recognized authority member. It uses SafeStreets to receive notification related to traffic violations.
+
+\item \textbf{Municipality}: an employee of Municipality who have the task to manage the communication with SafeStreets.
 
 \item \textbf{System Administrator}: a person in charge of keeping the system up to date, checking Authority policies and behaviors.
 
@@ -263,14 +275,14 @@ not yet completed the Registration Process. The only thing which it is able to d
 
 
 \subsection{Assumptions, dependencies and contraints}
-\vspace{5mm}
+\vspace{3mm}
 \subsubsection{Domain assumptions}
 \begin{flushleft}
 
 [D1] - Authorities correctly insert address of reference station.
 \vspace{2mm}
 
-[D2] - Each authority member must have an uniquely identifiable code.
+[D2] - Authorities must provide to its authority member the unique code.
 \vspace{2mm}
 
 [D3] - Devices used by end users are supposed to have a camera and an integrated and enabled GPS sensor.
@@ -306,10 +318,12 @@ not yet completed the Registration Process. The only thing which it is able to d
 [D13] - External service(FindOwnerPlate) is well integrated with SafeStreets that permits to retrieve personal data of the vehicle’s owner.
 \vspace{2mm}
 
-[D14] – Every time an authority member start his/her working hours, logs into the application setting properly their availability status.
+[D14] – Every time an authority member starts working, has to
+logs into the application and sets properly availability status.
 \vspace{2mm}
 
 \end{flushleft}
+%%%% SECTION 3%%%%
 
 \newpage
 \section{Specific Requirements}
@@ -327,43 +341,42 @@ not yet completed the Registration Process. The only thing which it is able to d
 \newpage
  \includegraphics[scale=0.7]{MOCKUP/authreg.png}                  \hfill \includegraphics[scale=0.6]{MOCKUP/amreg.png}
 		 
-		 \textbf{Figure 3.11:} Authority registration   \hfill \textbf{Figure 3.12:} AM authentication.
+		 \textbf{Figure 3.3:} Authority registration   \hfill \textbf{Figure 3.4:} AM authentication.
 		\begin{center}
   \includegraphics[scale=0.7]{MOCKUP/userreg.png}                  
   
-		 \textbf{Figure 3.12:} User Registration.
+		 \textbf{Figure 3.5:} User Registration.
 	\end{center}
 
 
 \newpage
  	 \includegraphics[scale=0.7]{MOCKUP/login.png}                  \hfill \includegraphics[scale=0.7]{MOCKUP/menuuser.png}
 		 
-		 \textbf{Figure 3.3:} Login view.  \hfill \textbf{Figure 3.4:} User Menu view.
+		 \textbf{Figure 3.6:} Login view.  \hfill \textbf{Figure 3.7:} User Menu view.
 		
   \includegraphics[scale=0.7]{MOCKUP/menuam.png}                  \hfill \includegraphics[scale=0.7]{MOCKUP/menua.png}
 		 
-		 \textbf{Figure 3.5:} Authority Member menu.  \hfill \textbf{Figure 3.6:} Authority menu.
+		 \textbf{Figure 3.8:} Authority Member menu.  \hfill \textbf{Figure 3.9:} Authority menu.
 		 
 
 \newpage
  	 \includegraphics[scale=0.7]{MOCKUP/usernotification.png}                  \hfill \includegraphics[scale=0.7]{MOCKUP/userpast.png}
 		 
-		 \textbf{Figure 3.7:} Notification's form user.  \hfill \textbf{Figure 3.8:} User notifications.
+		 \textbf{Figure 3.10:} Notification's form user.  \hfill \textbf{Figure 3.11:} User notifications.
 		
   \includegraphics[scale=0.7]{MOCKUP/userstats.png}                  \hfill \includegraphics[scale=0.7]{MOCKUP/amnot.png}
 		 
-		 \textbf{Figure 3.9:} Statistics for user.  \hfill \textbf{Figure 3.10:}AM notifications.
+		 \textbf{Figure 3.12:} Statistics for user.  \hfill \textbf{Figure 3.13:}AM notifications.
 
 
 \newpage
  	 \includegraphics[scale=0.7]{MOCKUP/autmemtickets.png}                  \hfill \includegraphics[scale=0.7]{MOCKUP/amstats.png}
 		 
-		 \textbf{Figure 3.11:} AM tickets menu   \hfill \textbf{Figure 3.12:} AM summary stats.
+		 \textbf{Figure 3.14:} AM tickets menu   \hfill \textbf{Figure 3.15:} AM summary stats.
 		
   \includegraphics[scale=0.7]{MOCKUP/authtickets.png}                  \hfill \includegraphics[scale=0.7]{MOCKUP/authmember.png}
 		 
-		 \textbf{Figure 3.13:} Authority tickets.  \hfill \textbf{Figure 3.14:} Authority members' list.
-
+		 \textbf{Figure 3.16:} Authority tickets.  \hfill \textbf{Figure 3.17:} Authority members' list.
 
 %% Hardware and Communication interface%% 
 
@@ -372,13 +385,13 @@ not yet completed the Registration Process. The only thing which it is able to d
 \begin{center}
 \includegraphics[scale=0.30]{communication/communication.png}                 
 
-\textbf{Figure 3.15:} Communication architecture. 
+\textbf{Figure 3.16:} Communication architecture. 
 \end{center}
 
 \begin{center}
 \includegraphics[scale=0.30]{communication/applicationdiagram.png}                 
 
-\textbf{Figure 3.16:} Application diagram. 
+\textbf{Figure 3.17:} Application diagram. 
 \end{center}
 
 \newpage
@@ -415,13 +428,13 @@ A municipality has to decide in which area of city organize a worldwide event th
 \begin{center}
 \includegraphics[scale=0.45]{Progettiuse-cases/Imgusecases/usecasevisitor.png}                 
 
-\textbf{Figure 3.16:} Visitor use case. 
+\textbf{Figure 3.18:} Visitor use case. 
 \end{center}
 
 \begin{center}
 \includegraphics[scale=0.45]{Progettiuse-cases/Imgusecases/use-caseuser.png}                 
 
-\textbf{Figure 3.17:} User use case. 
+\textbf{Figure 3.19:} User use case. 
 \end{center}
 
 \newpage
@@ -441,58 +454,341 @@ A municipality has to decide in which area of city organize a worldwide event th
 \begin{center}
 \includegraphics[scale=0.45]{Progettiuse-cases/Imgusecases/use-case-system.png}                  
 
-\textbf{Figure 3.20:} Authority Member use case. 
-\end{center}
-
-\newpage
-
-%%%%FUNCTIONAL REQUIREMENTS%%%%\newpage
-
-\subsection{Use cases diagrams}
-
-\vspace{5mm}
-\begin{center}
-\includegraphics[scale=0.45]{Progettiuse-cases/Imgusecases/usecasevisitor.png}                 
-
-\textbf{Figure 3.16:} Visitor use case. 
-\end{center}
-
-\begin{center}
-\includegraphics[scale=0.45]{Progettiuse-cases/Imgusecases/use-caseuser.png}                 
-
-\textbf{Figure 3.17:} User use case. 
-\end{center}
-
-\newpage
-\vspace{5mm}
-\begin{center}
-\includegraphics[scale=0.45]{Progettiuse-cases/Imgusecases/usecaseAuthority.png}                 
-
-\textbf{Figure 3.18:} Authority use case. 
-\end{center}
-
-\begin{center}
-\includegraphics[scale=0.45]{Progettiuse-cases/Imgusecases/authmemb1.png}                 
-
-\textbf{Figure 3.19:} Authority Member use case. 
-\end{center}
-
-\begin{center}
-\includegraphics[scale=0.45]{Progettiuse-cases/Imgusecases/use-case-system.png}                  
-
-\textbf{Figure 3.20:} Authority Member use case. 
+\textbf{Figure 3.20:} System Manager use case. 
 \end{center}
 
 \newpage
 
 %%%%FUNCTIONAL REQUIREMENTS%%%%
+\subsection{Functional Requirements}
+\vspace{5mm}
+
+\subsubsection{SafeStreets Functional Requirements}
+\vspace{2mm}%%GOAL1%%
+\textbf{[G1]: Users can be uniquely identified, thanks to the completion of the Registration Process.}
+\vspace{2mm}
+\begin{flushleft}
 
 
+[R1] -- Citizens must be able to begin the Registration Process into login page.
+\vspace{2mm}
+
+[R2] – During the Registration Process, Visitor have to be asked from the system for filling with his personal data (name, surname, address, gender, age, email, and fiscal code) a specific form.
+\vspace{2mm}
+
+[R3] – The system must reject the signup by a Visitor if the provided fiscal code is already associated to another existing account.
+\vspace{2mm}
+
+[R4] – The system must verify coherence between fiscal code inserted in the registration process form, and personal data provided by the user.
+\vspace{2mm}
+
+[R5] – The signup must include a completion process in order to verify the correctness of the user’s registration and enable the user to access to the software.
+\vspace{2mm}
+
+[R6] -- In order to complete Registration Process, the system will ask for an identity confirmation of the Visitor thanks to a code sent via SMS or e-email.
+\end{flushleft}
+%%%GOAL2%%%%
+\vspace{4mm}
+\textbf{[G2]: Authorities can be uniquely identified, thanks to the completion of Registration Process.}
+\vspace{2mm}
+\begin{flushleft}
+
+
+[R7] -- Each authority, belonging to a town in which SafeStreets’ services are active, must be registered in order to lets its employee be notified by the users.
+\vspace{2mm}
+
+[R8] – After the Registration Process, Authority can manage the list of Authority Members adding or delete employees from the list.
+\vspace{2mm}
+
+[R9] – During the Registration Process, finalized by an Authority member, the system asks for the information about the physical information about the Authority, its formal force name (Police, Carabinieri, Local Police District), the address of reference station and a list of its employee (and for each of them provide name, surname, institutional email and an unique code).
+\vspace{2mm}
+
+[R10] – System when have the complete employees’ list, create an account for each of them.
+\vspace{2mm}
+
+[R11] – The system must reject the registration by an Authority if the provided couple (formal name, address, city) is already associated to another existing one.
+\vspace{2mm}
+
+%%%GOAL 3%%%
+
+\vspace{4mm}
+\textbf{[G3]: Authority members can be uniquely identified, thanks to the completion of Authentication Process.}
+\vspace{2mm}
+
+[R12] -- System must allow authority member to activate their own account providing the unique code that reference Authority Department has assigned to them.
+\vspace{2mm}
+
+[R13] – The sign up must include a completion process in order to verify the correctness of the user’s registration did by the Authority, and enable the Authority Member to access to the software.
+\vspace{2mm}
+
+[R14] – Software allows authority member to specify their availability status.
+\vspace{2mm}
+
+%%GOAL4%%%
+\vspace{4mm}
+\textbf{[G4]: Allows users to notify Authority Members when traffic violations occur.}
+\vspace{2mm}
+
+[R15] -- Users must provide their credentials, into the form of login page, to access to their personal area.
+\vspace{2mm}
+
+[R16] – If credentials do not match with the stored ones, the system must reject the request of login prompting an error.
+\vspace{2mm}
+
+[R17] – The mobile application must provide a section where the users can fill a form and upload images about the occurred traffic violations. In order to better organize force displacement user specifies to which Authority notify the violation.
+\vspace{2mm}
+
+[R18] –  The mobile application must provide a section where users can find all his past notifications.
+\vspace{2mm}
+
+[R19] – Allows end users to share the traffic violation’s position.
+\vspace{2mm}
+
+[R20] – Data and time are directly taken from end users’ device.
+\vspace{2mm}
+
+%%GOAL5%%
+\vspace{4mm}
+\textbf{[G5]: Allows authority member to receive the notifications about traffic violations in order to increase the local security.}
+\vspace{2mm}
+
+[R21] -- Authorities member must provide their credentials, into the form of login page, to access to their personal area.
+\vspace{2mm}
+
+[R22] – If credentials do not match with the stored ones, the system must reject the request of login prompting an error.
+\vspace{2mm}
+
+[R23] – Software system dispatches the notification about the incident to the nearest authority member, for which user requested an intervention. If the first authority member notified is busy, the notification will be passed to the next authority member always close to the incident.
+\vspace{2mm}
+
+[R24] –  Software permits to each authority member to specify their availability status.
+\vspace{2mm}
+
+[R25] – System must be able to recognize license plate from images.
+\vspace{2mm}
+
+[R26] – System must be able to recognize any possible kind of altered information contained in a traffic violation sent by a user.
+\vspace{2mm}
+
+
+%%GOAL6%%
+\vspace{4mm}
+\textbf{[G6]: Allows end users to mine information on traffic violations that has been received and build some statistics.}
+\vspace{2mm}
+
+[R22] -- Users must provide their credentials, into the form of login page, to access their personal view.
+\vspace{2mm}
+
+[R23] – Software system  shows statistics related to unsafe areas thanks to the highest number 
+\vspace{2mm}
+
+[R24] –  System shows to the end users the statistics in a specific section of the software.
+\vspace{2mm}
+
+[R25] –  Statistics must be updated each month.
+\vspace{2mm}
+
+%%GOAL7%%
+\vspace{4mm}
+\textbf{ [G7]: Allows authority members4 to mine information on traffic violations that has been received, and build some statistics.}
+\vspace{2mm}
+
+[R26] -- Software system show which kind of traffic violations occurs more frequently for each area.
+\vspace{2mm}
+
+[R27] – System shows the relate statistics in a specific section of the software.
+\vspace{2mm}
+
+[R28] – Software system is able to show statistics related to unsafe areas thanks to the highest number of traffic violations in that zone.
+\vspace{2mm}
+
+[R29] –  Statistics must be updated each month.
+\vspace{2mm}
+
+[R30] – Software system is able to show statistics related to vehicles that commit the most violations.
+\vspace{2mm}
+
+[R31] – Authority members must provide their credentials, into the form of login page, to access their personal view.
+\vspace{2mm}
+
+%%GOAL8%%
+\vspace{4mm}
+\textbf{ [G8]: Builds a cross information analysis between municipality’s data and its self data to improve reliability of the service and suggest to municipality possible interventions.}
+\vspace{2mm}
+
+[R32] -- Software system must be able to retrieve information from municipality service and generate their relative statistics.
+\vspace{2mm}
+
+[R33] – SafeStreets provides an algorithm able to cross information which derives from its own statistics and municipality’s statistics.
+\vspace{2mm}
+
+[R34] – Permits to suggest to municipality how to improve the security.
+\vspace{2mm}
+
+[R35] –  SafeStreets is able to communicate suggestion to the municipality through e-mail.
+\vspace{2mm}
+
+%%GOAL9%%
+\vspace{4mm}
+\textbf{ [G9]: Allows municipality (in particular local police) to retrieve traffic violations in order to generate relative traffic tickets.}
+\vspace{2mm}
+
+[R36] -- System has to avoid any possible kind of altered information contained in a traffic violation sent by a user.
+\vspace{2mm}
+
+[R37] – System must be able to recognize license plate from images.
+\vspace{2mm}
+
+[R38] – Provides personal data of the vehicle’s owner that committed an infraction to authorities, retrieved by an external service(FindOwnerPlate).
+\vspace{2mm}
+
+[R39] – SafeStreets is able to send all informations related to traffic violations to the nearest local police station that will handle ticket generation process assigning an authority member available in the zone.
+\vspace{2mm}
+
+[R40] – SafeStreets stores position of all local police centers in the city where SafeStreets works. 
+\vspace{2mm}
+
+%%GOAL10%%
+\vspace{4mm}
+\textbf{ [G10]: Builds statistics using information related to emitted traffic tickets.}
+\vspace{2mm}
+
+[R41] -- Provides personal data of the vehicle’s owner, who committed an infraction, to authorities retrieved by an external service.
+\vspace{2mm}
+
+[R42] – SafeStreets is able to store all infractions sent to local police station and generate their relative statistics by mean of an algorithm.
+\vspace{2mm}
+
+[R43] – SafeStreets provides to local police a ranking of the most offenders in their relative area.
+\vspace{2mm}
+
+[R44] –  SafeStreets provides to users the statistics concerning the improvement brought by SafeStreets initiative.
+\vspace{2mm}
+
+
+
+%%%%SEQUENCE DIAGRAMS NEW PAGE%%%
+\end{flushleft}
+
+
+%%%USE-CASE DESCRIPTION%%%
+
+\subsubsection{Use case descriptions}
+\vspace{5mm}
+%% formatting %%
+		 
+		 \includegraphics[scale=0.9]{images/usecase1ok.png}                  
+		 
+		  \textbf{Table 3.1:} Registration Process – User (Citizen).
+
+\newpage
+	 
+		 \includegraphics[scale=0.9]{images/usecase2.png}                  
+		 
+		  \textbf{Table 3.2:} Registration Process – Authorities.
+
+\newpage
+
+ \includegraphics[scale=0.9]{images/usecase3.png}                  
+		 
+		  \textbf{Table 3.3:} Activating Account Process – Authority Members.
+		  
+\newpage
+
+
+ \includegraphics[scale=0.9]{images/usecase4.png}                  
+		 
+		  \textbf{Table 3.4:} Login Process – All.
+		  
+ \includegraphics[scale=0.9]{images/usecase5.png}                  
+		 
+		  \textbf{Table 3.5:} Notify Authority – User.
+		  
+\newpage
+
+ \includegraphics[scale=0.9]{images/usecase6.png}                  
+		 
+		  \textbf{Table 3.6:} Authority Member handle violation report. 
+
+\newpage
+
+\begin{center}
+\includegraphics[scale=0.90]{images/usecase8.png}                 
+
+\textbf{Table 3.8:}Authority Members requests to visualize Statistics. 
+\end{center}
+
+\begin{center}
+\includegraphics[scale=0.90]{images/usecase9.png}                 
+
+\textbf{Table 3.9:} User requests to visualize progress of their past notifications. 
+\end{center}
+
+\newpage
+
+\begin{center}
+\includegraphics[scale=0.90]{images/usecase10.png}                 
+
+\textbf{Table 3.10:}Authority Members requests to visualize their past handled notification.
+\end{center}
+
+\begin{center}
+\includegraphics[scale=0.90]{images/usecase11ok.png}                 
+
+\textbf{Table 3.11:} SafeStreets suggest same possible intervention to the Authority.
+\end{center}
+
+\newpage
+ \includegraphics[scale=0.95]{images/usecase12ok.png}                  
+		 
+		  \textbf{Table 3.12:} Local police receives certified violations for  witch is possible to generate traffic tickets .
+
+\newpage
+ \includegraphics[scale=0.95]{images/usecase13.png}                  
+		 
+		  \textbf{Table 3.13:} Local police visualizes statistics regarding traffic tickets.
+\vspace{5mm}
+\subsection{ Performance Requirements}
+\vspace{4mm}
+\begin{flushleft}
+
+[P1] – The system is designed to manage in an efficiently and effectively way the requests of a little-medium size city of about four hundred thousand population. In a first estimation, an average 75\% of contemporary users activity is expected.
+\vspace{2mm}
+
+[P2] – The system is designed to guarantee a response time less than 10 seconds between an user notification about a traffic violation and the succesful receipt and dispatching occurred between the agents closer to the streets’ violation.
+\vspace{2mm}
+
+[P3] – Starting from the System Manager, the system must guarantee the correcting update of every statics every month with a response time less than 30 seconds.
+\vspace{2mm}
+
+[P4] – Starting from the User notification to authorities, the system must guarantee a response time of less than 4 seconds for computing the accepting phase by the authorities member.
+\newpage
+
+\vspace{2mm}
+[P5] – The system must guarantee an updating time of picture and infos in the form fill by the User about less than 3 seconds from the time the User updated the parameters and files.
+\end{flushleft}
+
+
+\subsection{Design Constraints}
+
+\subsubsection{Standards compliance}
+
+\subsubsection{Hardware limitations}
+\vspace{3mm}\begin{itemize}
+\item For the mobile app, an android 5+ or ios 10.1+ smartphone must be used.
+
+\item One among WI-FI, 3G, 4G, 4G+ connection should be available in order to garantee the lowest latency.
+
+\item A GPS sensor must be available on smartphone, and correctly face the SafeStreets data needs.
+
+\end{itemize}
+
+\subsection{Software System Attribute}
+\vspace{2mm}
+\subsubsection{Reliability}
 
 
 \end{document}
-
-
 
 
 
