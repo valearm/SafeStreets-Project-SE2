@@ -1,4 +1,4 @@
-aabstract sig Gender{}
+abstract sig Gender{}
 one sig Male extends Gender{}
 one sig Female extends Gender{}
 
@@ -177,4 +177,4 @@ pred show {
 }
 
 run show for 5 but 8 Int, exactly 5 String
-
+//ciao
