@@ -1,4 +1,4 @@
-# Armenante Capaldo Di Salvo SafeStreets Project
+# Armenante, Capaldo, Di Salvo SafeStreets Project
 
 # <img src="/LOGO.jpg" align="left" height="150px" /></br></br></br>
 
