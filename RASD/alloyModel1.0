@@ -80,6 +80,30 @@ violationID: one Int,
 readPlate: one String,
 authorityMember: one AuthorityMember,
 report: one String,
+nameZone: one String,
+}
+
+sig UserStatistics{
+violation: set PastViolation,
+}
+
+sig AuthorityStatistics{
+violation: set PastViolation,
+}
+
+sig Suggestion{
+userstatistics: set UserStatistics,
+authoritystatistics: set AuthorityStatistics,
+}
+
+sig Ticket{
+ticketID: one String,
+violation: one PastViolation,
+sanction: one String,
+}
+
+sig TicketStatistics{
+ticketstat: set Ticket,
 }
 
 //CUSTOMER FACT
@@ -209,7 +233,35 @@ or( (n.notificationID = pv.notificationID and n.notificationID != v.notification
 or ( n.notificationID != v.notificationID and  n.notificationID != pv.notificationID)) => v.authorityMember.availabilityStatus= Unavailable 
 }
 
-//FUNZIONE PER IL CALCOLO DELL MEMBRO PIU VICINO IN BASE ALLA POSIZIONE
+//STATISTICS FACT
+fact userStatisticRelatedToPastViolation{
+all s:UserStatistics | some pv:PastViolation | pv in s.violation
+}
+
+fact authorityStatisticRelatedToPastViolation{
+all s:AuthorityStatistics | some pv:PastViolation | pv in s.violation
+}
+
+fact authorityStatisticRelatedToPastViolation{
+all sugg:Suggestion | some as1:AuthorityStatistics | as1 in sugg.authoritystatistics
+all sugg:Suggestion | some us1:UserStatistics | us1 in sugg.userstatistics
+}
+
+
+//TICKET FACT
+
+fact ticketIdIsUnique {
+no disjoint t1, t2: Ticket | t1.ticketID=t2.ticketID
+}
+
+fact ticketRelatedToOneViolation{
+one t:Ticket | one pv:PastViolation | pv in t.violation
+}
+
+//TICKET STATISTIC FACT
+fact ticketStatsRelatedToTicket{
+all ts:TicketStatistics | some t:Ticket | t in ts.ticketstat
+}
 
 
 pred show { 
@@ -220,7 +272,12 @@ pred show {
 #Notification > 0
 #Violation > 0
 #Notification >= #Violation
-#PastViolation > 0
+#PastViolation > 2
+#UserStatistics > 2
+#AuthorityStatistics >2 
+#Suggestion > 2
+#Ticket > 0
 }
 
 run show for 5 but 8 Int, exactly 5 String
+
