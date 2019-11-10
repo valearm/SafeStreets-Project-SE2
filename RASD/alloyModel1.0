@@ -1,0 +1,226 @@
+abstract sig Gender{}
+one sig Male extends Gender{}
+one sig Female extends Gender{}
+
+abstract sig AvailabilityStatus{}
+one sig Available extends AvailabilityStatus{}
+one sig Unavailable extends AvailabilityStatus{}
+
+abstract sig Customer {
+email: one Email,
+password: one Password,
+}
+
+sig FiscalCode{}
+sig Email{}
+sig Password{}
+sig UniqueCode{}
+sig City{}
+
+sig User extends Customer {
+name: one String,
+surname: one String,
+address: one String,
+gender: one Gender, 
+age: one Int,
+city: one City,
+fiscalcode: one FiscalCode, 
+position: one Position, 
+notification: set Notification, 
+}{
+#notification >= 0
+age >= 18 and age <= 90
+}
+
+sig Position{
+coorX: one Int,
+coorY: one Int,
+}
+
+sig Notification {
+notificationID: one Int, 
+typeOfViolation: one String,
+date: one Int,
+time: one Int,
+position: one Position,
+referenceAuthorityName: one String,
+description: one String,
+historyStatus: one String, //Used to take in care the progress in handling notification
+user: one User,
+}{
+date >=0
+time >=0
+}
+
+sig Authority extends Customer {
+forcename: one String,
+referenceaddress: one String,
+city: one City,
+authoritymember: set AuthorityMember,
+//ticket: set Ticket,
+}
+
+sig AuthorityMember extends Customer {
+name: one String,
+surname: one String,
+uniqueCode: one UniqueCode, 
+availabilityStatus: one AvailabilityStatus, 
+position: one Position,
+authority: one Authority,
+}
+
+sig Violation extends Notification {
+violationID: one Int, 
+readPlate: one String,
+authorityMember: one AuthorityMember,
+}
+
+sig PastViolation extends Notification {
+violationID: one Int, 
+readPlate: one String,
+authorityMember: one AuthorityMember,
+report: one String,
+}
+
+//CUSTOMER FACT
+//*******************************************
+fact numberOfCustomer{
+	Authority + AuthorityMember + User = Customer
+}
+
+fact noEmailWithoutCustomer {
+#Email=#Customer
+}
+
+fact noPassWithoutCustomer {
+#Password=#Customer
+}
+
+fact customerEmailIsUnique{
+no disjoint c1,c2: Customer | c1.email = c2.email or c1.password = c2.password
+}
+
+
+//USER FACT
+//*******************************************
+fact allCityAssociatedToUser{
+all c:City| some u1:User | c in u1.city
+}
+
+fact userFiscalCodeIsUnique{
+no disjoint u1,u2: User | u1.fiscalcode= u2.fiscalcode
+}
+
+fact noFiscalCodeWithoutUser{
+all fc:FiscalCode| some u:User | fc in u.fiscalcode
+}
+
+fact userHasAGender {
+#Gender=#User
+}
+
+fact noUserGender{
+all g:Gender| some u:User | g in u.gender
+}
+
+fact allPositionAssociatedToUser{
+all p:Position| some u1:User | p in u1.position
+}
+
+
+//NOTIFICATION FACT
+//*******************************************
+fact notificationIdIsUnique{
+no disjoint n1, n2: Notification | n1.notificationID=n2.notificationID
+}
+
+
+//AUTHORITY FACT
+//*******************************************
+fact allCityAssociatedToAuthority{
+all c:City| some a:Authority | c in a.city
+}
+
+// triple (city, address, force name) unique
+fact uniqueAuthorityInformation {
+no disjoint a1, a2: Authority |	a1.city = a2.city and  
+						a1.referenceaddress = a2.referenceaddress and 
+						a1.forcename = a2.forcename
+}
+
+//each member linked to an authority must be in the set of members of that authority
+fact memberBelongingToAuthorityMemberSet{
+	all am:AuthorityMember, a:Authority | am in a.authoritymember => am.authority = a
+}
+
+//check if an authority member is inside the set of authority
+assert checkingOnBelongingAuthority{
+	some am:AuthorityMember, a:Authority | am.authority= a and am not in a.authoritymember
+}
+
+
+//AUTHORITY MEMBER FACT
+//*******************************************
+
+//Code are unique inside each authority
+fact authorityCodeIsUnique{
+no disjoint am1,am2: AuthorityMember | am1.uniqueCode = am2.uniqueCode 
+		   							and am1.authority = am2.authority
+}
+
+fact noUniqueCodeWithoutAuthority{
+all uc:UniqueCode| some am:AuthorityMember | uc in am.uniqueCode
+}
+
+fact memberAvailability{
+all av:AvailabilityStatus| some am:AuthorityMember | av in am.availabilityStatus
+}
+
+//VIOLATION FACT
+//*******************************************
+
+fact violatioIDisUnique {
+no disjoint v1, v2: Violation | v1.violationID=v2.violationID
+}
+
+fact violationHandlerBySpecifiedAuthority{
+all n:Notification, v:Violation | v.notificationID = n.notificationID 
+							=> v.authorityMember.authority.forcename = n.referenceAuthorityName
+}
+
+//Violation is handled by authority member which has the same city of the user
+fact eachViolationHasMemberAndUserSameCity {
+all v: Violation | v.user.city=v.authorityMember.authority.city
+}
+
+//if an authority member is handling a violation then its status is set as unavailable
+
+fact forcingUnavailableStatusToMember{
+all am:AuthorityMember, v:Violation | v.authorityMember=am => am.availabilityStatus=Unavailable
+}
+
+
+//PAST-VIOLATION FACT
+//*******************************************
+//
+fact managingStatusToAuthorityMember {
+all n: Notification, v: Violation, pv: PastViolation | (n.notificationID = v.notificationID and n.notificationID != pv.notificationID) => v.authorityMember.availabilityStatus= Available 
+or( (n.notificationID = pv.notificationID and n.notificationID != v.notificationID)
+or ( n.notificationID != v.notificationID and  n.notificationID != pv.notificationID)) => v.authorityMember.availabilityStatus= Unavailable 
+}
+
+//FUNZIONE PER IL CALCOLO DELL MEMBRO PIU VICINO IN BASE ALLA POSIZIONE
+
+
+pred show { 
+#User > 0
+#AuthorityMember >0
+#Authority > 0
+#AuthorityMember > #Authority
+#Notification > 0
+#Violation > 0
+#Notification >= #Violation
+#PastViolation > 0
+}
+
+run show for 5 but 8 Int, exactly 5 String
