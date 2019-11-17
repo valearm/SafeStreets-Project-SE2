@@ -1,0 +1,90 @@
+\documentclass[12pt]{article}
+\usepackage{mathpazo}
+\usepackage{graphicx}
+\usepackage[explicit]{titlesec}
+\usepackage{hyperref}
+\usepackage[export]{adjustbox}
+\usepackage{placeins}
+\usepackage{subcaption}
+\usepackage{import}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\usepackage{setspace}
+\usepackage{rotating}
+
+\begin{document}
+\onehalfspacing
+%title page
+\begin{center}
+	{\huge {\textbf{Politecnico di Milano}}}
+	 	\vspace{7mm}\\
+	 	
+ 	 	\includegraphics[scale=1.5]{Images/PolimiLogo.png}
+	\end{center}
+
+\begin{center}
+	     \vspace{5mm}
+		{\Large A.A 2019/2020} 
+		\vspace{1cm}\\
+		{\Large {\textbf{Design Document}}}   
+		\includegraphics[scale=1]{Images/LOGO.jpg}
+    \end{center}
+          
+\begin{flushright}
+         
+	 	 
+	 	{\huge {\Large \textbf{Authors:}}}
+	 	 
+	 	{Armenante Valerio}
+	 	
+	 	{Capaldo Marco}
+	 	
+	 	{Di Salvo Dario}
+	\end{flushright}
+
+
+%begin of contents
+
+\newpage
+\hrule
+\hypersetup{hidelinks}\tableofcontents
+
+\vspace{0.5mm}
+\vspace{0.24mm}
+
+\newpage
+
+\section{Introduction}
+\hrule
+\vspace{1cm}
+\subsection{Purpose}
+\vspace{5mm}
+The presented document is the Software Design Document where there is a general view of the SafeStreets platform presented by the
+RASD, with all the functions the system has to realize, and to give implementative and technical details. Specifically, this document wants to concentrate on the analysis with high level descriptions of the main algorithms, describe
+the architectural styles and pattern, and generally establish the design standards for the development phase of components, run-time processes, deployment and the algorithm design. All the informations that are going to be written in this document are also intended to behave as a guide to
+follow during the software developing process.
+The document will pursue the analysis following a rigorous scheme, to make a clear and complete description about these characteristics of the software.
+In particular, this document is intended for stakeholders, software engineers, and programmers and must be used as reference throughout the whole development of the system. The document is going to present an overview of the high level architecture, together with an explanation of the main components and the communication system between them through their interfaces; the description of the runtime behavior together with an overview of the deployment mechanism; the definition of the design patterns together with a qualitative algorithm design of the most crucial parts of both the mobile application and web application; the definition of the implementation, integration,and testing plans.
+
+\subsection{Scope}
+\vspace{5mm}
+As presented in the Rasd Document, the SafeStreets software allow users to notify traffic violations to authorities. More specifically, the notification process consists in the acquisition of pictures, date, time, location and type of reported violation inserted by user. The aim of SafeStreets basic service is to retrieve and store information from inputted data, completing it with suitable metadata.  In particular, when user sends pictures related to a traffic violations, SafeStreets is able to recognize license plate by means of an external algorithm. After that, SafeStreets dispatches the notification to the authority member, which is in an available status and is chosen according to the minimum distance between the notified traffic violation and authority member’s position. In the end, the assigned authority member will opportunely manage the received request. In addiction, users and authorities member, through a Mobile Application interface presenting different level of visibility to different roles, will be able to mine information that has been received, for example by highlighting the areas with the highest frequency of violations. This is going to be realized designing some algorithms able to generate statistics on the previously stored data. A user who approaches the mobile application for the first time has to complete a registration process, as well as an authority which approaches the dedicated website for the first time. In particular, an authority inserts all their authority member in SafeStreets database through a website’s form specifying their e-mail and unique code. In this way, each authority member have to do only an activation process, inserting their personal data and the assigned unique code.
+Thanks to the first advance function, the software is able to improve more the security of cities through a cooperation with municipality. First of all SafeStreets retrieves information from municipality through an external service, then information are categorized (accidents, violations, etc.) and some statistics are generated. Then crossing information between resultant elaboration and already available SafeStreets data, the goal can be reached. More specifically, if traffic violations cardinality, related to an area, exceed a specified threshold, SafeStreets identifies the area as unsafe and suggests possible interventions to municipality. Obviously, the threshold is properly defined according to the characteristics of the city.
+Then through the second advance function, SafeStreets can provide correct information, related to traffic violations, to municipality(in particular local police). In this way, municipality can easily and correctly emits traffic tickets to the offenders. In order to ensure the correctness of information, SafeStreets implements an algorithm that recognize if a manipulation is occurred on uploaded data by users. Moreover, Safestreets builds some statistics regarding traffic tickets data such as a ranking of the most offenders, most common violations and the effectiveness of SafeStreets initiative.
+\vspace{1cm}
+
+\subsection{Definitions, Acronyms and Abbrevations}
+\vspace{5mm}
+\subsubsection{Acronyms}
+\subsubsection{Abbreviations}
+\vspace{5mm}
+\subsection{Revision History}
+\subsection{Reference Documents}
+\subsection{Document Structure}
+
+\newpage
+\section{Architectural Design}
+\hrule
+\vspace{1cm}
+\subsection{Overview: High-level components and their interaction}
+\end{document}
