@@ -87,4 +87,62 @@ Then through the second advance function, SafeStreets can provide correct inform
 \hrule
 \vspace{1cm}
 \subsection{Overview: High-level components and their interaction}
+\vspace{5mm}
+\begin{center}
+\includegraphics[scale=0.40]{Images/ARCDIAGRAMOK.jpg}
+\vspace{2mm}
+
+Figure 2.1: Physical architecture diagram.
+\end{center}
+\vspace{3mm}
+The high level architecture of the system is divided in three main layers or tiers (as shown in figure 2.1):
+\begin{itemize}
+\item \textbf{Client-side layer}: this is the closest part of the system to the customers: authority member, authority and user's interfaces. It is composed by the customer mobile application, and the authority web application.
+
+\item \textbf{System core network layer}: identifies the central portion of the infrastructure, the "mind" of the system. It is composed by the Application Server, which is protected by Firewalls, and by the System Manager Web Application, which owns a direct interface to the Application Server and monitor all the functionality aspects of the system.
+
+\item \textbf{Storage layer}: identifies the storage tier of the infrastructure, where there are all the backups of the data of our system. It is composed by the Database Server, SafeStreets Data Database and Administration Database.
+\end{itemize}
+The System core network layer is composed by the the Application Server, the “mind” of the system, that is protected in an efficient and secure way thanks to firewalls placed before the communication with the internet network , the Database Server and the System Manager Web Application.
+The System Manager have to monitor the Application Server with the aim to manage
+events into the system, for example Request of Data Access like statistic's data or other type of data saved in the system itself, or the Registration Request of new customer and so on.
+Furthermore, the System Manager can access to the Storage layer through the Application Server and manage the data in the Database.
+The Customer Mobile Application is the User client front-end portion of the system, that owns
+an interface to the Mobile Data Network, through which the client can access to the Internet
+network and can use the services offer by the system.
+The Database Server receives and manages every incoming request, which regards one of the storage entities among SafeStreets Data Database and Administration Database (it holds
+Data about subscribed Authorithy, Authority Member, User  and other relevant administration-oriented data). The system is completely oriented towards data integrity and persistence thanks to the Backup Database Server.
+
+\subsection{Component view}
+\vspace{5mm}
+\begin{center}
+\includegraphics[scale=0.24]{Images/UMLok.jpg}
+\vspace{2mm}
+
+Figure 2.2: SafeStreets Class Diagram.
+\end{center}
+
+\newpage
+\subsubsection{High Level Component Design}
+\vspace{5mm}
+In the figure 2.3 there is presented an high level Component Diagram about interfaces provided by the Server Side of the application, Authority Web Services, System Manager Web Services and SafeStreets Mobile Services. The Authority Web Services and the System Manager Web Services interacts with the Web Application client side, while the SafeStreets Mobile Services interacts with the Mobile Application client side. An unique mobile application is provided to Customers while two different web application are intended for the System Manager and Authority.
+\begin{center}
+\includegraphics[scale=0.5]{Images/CDOK2.jpg}
+
+\vspace{2mm}
+Figure 2.3: SafeStreets High Level Component Diagram.
+\end{center}
+
+\newpage
+\begin{flushleft}
+Authority Web Services - provides the interface to permit Authority to perform Data Access Request and manage Data.
+\vspace{2mm}\\
+System Manager Web Services - provides the interfaces to System Manager to perform manintenance and updates tables, occurred Subscriptions and evaluating Data Access Requests.
+\vspace{2mm}\\
+SafeStreets Mobile Services - provides the interfaces that permit Customers to exploit all the SafeStreets services.
+\end{flushleft}
+
+\subsubsection{SafeStreets Services projection }
+
+
 \end{document}
