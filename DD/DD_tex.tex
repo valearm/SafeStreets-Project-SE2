@@ -142,7 +142,12 @@ System Manager Web Services - provides the interfaces to System Manager to perfo
 SafeStreets Mobile Services - provides the interfaces that permit Customers to exploit all the SafeStreets services.
 \end{flushleft}
 
-\subsubsection{SafeStreets Services projection }
+\subsubsection{SafeStreets Mobile Services projection }
+\vspace{5mm}
 
+
+SafeStreets Mobile Services subsystem is composed by more components and two different interfaces are exposed to the Mobile Client that are Retrieve Data Service and Customer Activity Service. The Customer Activity Service interface is given by the  Customer Control Activity component, that is able to direct the activities among User, Authority and Authority Member and to manage the Login and Registration/Authentication Processes. For the User, the Customer Control Activity component will show all the component interfaces referring to the SafeStreets application. First of all for the User there is the Profile Manager component which its Profile Service interface is used to manage the User Profile. The Request Manager component interface to manage specific Data Request Access, infact it interfaces through Statistics Data Service to the Statistics Data Manager component and through Notification Service interface to the Notification Manager component. User are able to interface to the Notification Component and then notify the Authority Member about a violation, through the specific interface Violation Data Service. The User can also complete  info about a violation during the Notification phase,like time, and position using a maps API thanks to the component Device Data Manager and its interface Data Service. The Customer Control Activity component gives to the Authority Member the possibility to access more components than the User. AM can access to the interface Profile Service and the Request Service in order to access to the respective components. Using the interface Profile Service AM can, more respect than the user, set his Availability Status thanks to the interface Availability Status Service and its component Availability Status Manager. AM can also manage in an efficient way the violation and takes info about Statistics respectively through the interface Violation Service and Statistics Data Service and respectively interfaces.
+The Customer Control Activity component also exploit the interfaces relative to the Authority. Authority can access also the interface Profile Service, manage requests thanks to the Request Service interface and manage its list thanks to the AM List Service Interface. Moreover the Authority can manage the tickets thanks to the Ticket Service.
+In order to pursuit their goal every components need to communicate with the DBMS.
 
 \end{document}
