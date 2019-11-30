@@ -1,0 +1,201 @@
+\documentclass[12pt]{article}
+\usepackage{mathpazo}
+\usepackage{graphicx}
+\usepackage[explicit]{titlesec}
+\usepackage{hyperref}
+\usepackage[export]{adjustbox}
+\usepackage{placeins}
+\usepackage{subcaption}
+\usepackage{import}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\usepackage{setspace}
+\usepackage{rotating}
+
+\begin{document}
+\onehalfspacing
+%title page
+\begin{center}
+	{\huge {\textbf{Politecnico di Milano}}}
+	 	\vspace{7mm}\\
+	 	
+ 	 	\includegraphics[scale=1.5]{Images/PolimiLogo.png}
+	\end{center}
+
+\begin{center}
+	     \vspace{5mm}
+		{\Large A.A 2019/2020} 
+		\vspace{1cm}\\
+		{\Large {\textbf{Design Document}}}   
+		\includegraphics[scale=1]{Images/LOGO.jpg}
+    \end{center}
+          
+\begin{flushright}
+         
+	 	 
+	 	{\huge {\Large \textbf{Authors:}}}
+	 	 
+	 	{Armenante Valerio}
+	 	
+	 	{Capaldo Marco}
+	 	
+	 	{Di Salvo Dario}
+	\end{flushright}
+
+
+%begin of contents
+
+\newpage
+\hrule
+\hypersetup{hidelinks}\tableofcontents
+
+\vspace{0.5mm}
+\vspace{0.24mm}
+
+\newpage
+
+\section{Introduction}
+\hrule
+\vspace{1cm}
+\subsection{Purpose}
+\vspace{5mm}
+In the presented document is the Software Design Document where there is a general view of the SafeStreets platform presented by the
+RASD, with all the functions that the system has to realize and to give implementative and technical details. Specifically, this document wants to concentrate on the analysis with high level descriptions of the main aspects, describe
+the architectural styles and pattern, and generally establish the design standards for the development phase of components, run-time processes, deployment. All the informations that are going to be written in this document are also intended to behave as a guide to
+follow during the software developing process.
+The document will pursue the analysis following a rigorous scheme, to make a clear and complete description about these characteristics of the software.
+In particular, this document is intended for stakeholders, software engineers, and programmers and must be used as reference throughout the whole development of the system. The document is going to present an overview of the high level architecture, together with an explanation of the main components and the communication system between them through their interfaces; the description of the runtime behavior together with an overview of the deployment mechanism; the definition of the design patterns of the most crucial parts of both the mobile application and web application; the definition of the implementation, integration and testing plans.
+
+\subsection{Scope}
+\vspace{5mm}
+As presented in the RASD Document, the SafeStreets software allow users to notify traffic violations to authorities. More specifically, the notification process consists in the acquisition of pictures, date, time, location and type of reported violation inserted by user. The aim of SafeStreets basic service is to retrieve and store information from inputted data, completing it with suitable metadata.  In particular, when user sends pictures related to a traffic violations, SafeStreets is able to recognize license plate by means of an external algorithm. After that, SafeStreets dispatches the notification to the authority member, which is in an available status and is chosen according to the minimum distance between the notified traffic violation and authority member’s position. In the end, the assigned authority member will opportunely manage the received request. In addiction, users and authorities member, through a Mobile Application interface presenting different level of visibility to different roles, will be able to mine information that has been received, for example by highlighting the areas with the highest frequency of violations. This is going to be realized designing some algorithms able to generate statistics on the previously stored data. A user who approaches the mobile application for the first time has to complete a registration process, as well as an authority which approaches the dedicated website for the first time. In particular, an authority inserts all their authority member in SafeStreets database through a website’s form specifying their e-mail and unique code. In this way, each authority member have to do only an activation process, inserting their personal data and the assigned unique code.
+Thanks to the first advance function, the software is able to improve more the security of cities through a cooperation with municipality. First of all SafeStreets retrieves information from municipality through an external service, then information are categorized (accidents, violations, etc.) and some statistics are generated. Then crossing information between resultant elaboration and already available SafeStreets data, the goal can be reached. More specifically, if traffic violations cardinality, related to an area, exceed a specified threshold, SafeStreets identifies the area as unsafe and suggests possible interventions to municipality. Obviously, the threshold is properly defined according to the characteristics of the city.
+Then through the second advance function, SafeStreets can provide correct information, related to traffic violations, to municipality(in particular local police). In this way, municipality can easily and correctly emits traffic tickets to the offenders. In order to ensure the correctness of information, SafeStreets implements an algorithm that recognize if a manipulation is occurred on uploaded data by users. Moreover, Safestreets builds some statistics regarding traffic tickets data such as a ranking of the most offenders, most common violations and the effectiveness of SafeStreets initiative.
+\vspace{1cm}
+
+\subsection{Definitions, Acronyms and Abbrevations}
+\vspace{5mm}
+\subsubsection{Acronyms}
+\subsubsection{Abbreviations}
+\vspace{5mm}
+\subsection{Revision History}
+\subsection{Reference Documents}
+\subsection{Document Structure}
+
+\newpage
+\section{Architectural Design}
+\hrule
+\vspace{1cm}
+\subsection{Overview: High-level components and their interaction}
+\vspace{5mm}
+\begin{center}
+\includegraphics[scale=0.40]{Images/ARCDIAGRAMOK.jpg}
+\vspace{2mm}
+
+Figure 2.1: Physical architecture diagram.
+\end{center}
+\vspace{3mm}
+The high level architecture of the system is divided in three main layers or tiers (as shown in figure 2.1):
+\begin{itemize}
+\item \textbf{Client-side layer}: this is the closest part of the system to the customers: authority member, authority and user's interfaces. It is composed by the customer mobile application, and the authority web application.
+
+\item \textbf{System core network layer}: identifies the central portion of the infrastructure, the "mind" of the system. It is composed by the Application Server, which is protected by Firewalls, and by the System Manager Web Application, which owns a direct interface to the Application Server and monitor all the functionality aspects of the system.
+
+\item \textbf{Storage layer}: identifies the storage tier of the infrastructure, where there are all the backups of the data of our system. It is composed by the Database Server, SafeStreets Data Database and Administration Database.
+\end{itemize}
+The System core network layer is composed by the the Application Server, the “mind” of the system, that is protected in an efficient and secure way thanks to firewalls placed before the communication with the internet network , the Database Server and the System Manager Web Application.
+The System Manager have to monitor the Application Server with the aim to manage
+events into the system, for example Request of Data Access like statistic's data or other type of data saved in the system itself, or the Registration Request of new customer and so on.
+Furthermore, the System Manager can access to the Storage layer through the Application Server and manage the data in the Database.
+The Customer Mobile Application is the User client front-end portion of the system, that owns
+an interface to the Mobile Data Network, through which the client can access to the Internet
+network and can use the services offer by the system.
+The Database Server receives and manages every incoming request, which regards one of the storage entities among SafeStreets Data Database and Administration Database (it holds
+Data about subscribed Authorithy, Authority Member, User  and other relevant administration-oriented data). The system is completely oriented towards data integrity and persistence thanks to the Backup Database Server.
+
+\subsection{Component view}
+\vspace{5mm}
+\begin{center}
+\includegraphics[scale=0.24]{Images/UMLok.jpg}
+\vspace{2mm}
+
+Figure 2.2: SafeStreets Class Diagram.
+\end{center}
+
+\newpage
+\subsubsection{High Level Component Design}
+\vspace{5mm}
+In the figure 2.3 there is presented an high level Component Diagram about interfaces provided by the Server Side of the application, Authority Web Services, System Manager Web Services and SafeStreets Mobile Services. The Authority Web Services and the System Manager Web Services interacts with the Web Application client side, while the SafeStreets Mobile Services interacts with the Mobile Application client side. An unique mobile application is provided to Customers while two different web application are intended for the System Manager and Authority.
+\begin{center}
+\includegraphics[scale=0.5]{Images/CDOK2.jpg}
+
+\vspace{2mm}
+Figure 2.3: SafeStreets High Level Component Diagram.
+\end{center}
+
+\newpage
+\begin{flushleft}
+Authority Web Services - provides the interface to permit Authority to perform Data Access Request and manage Data.
+\vspace{2mm}\\
+System Manager Web Services - provides the interfaces to System Manager to perform manintenance and updates tables, occurred Subscriptions and evaluating Data Access Requests.
+\vspace{2mm}\\
+SafeStreets Mobile Services - provides the interfaces that permit Customers to exploit all the SafeStreets services.
+\end{flushleft}
+
+\subsubsection{SafeStreets Mobile Services projection }
+\vspace{5mm}
+
+
+SafeStreets Mobile Services subsystem is composed by more components and two different interfaces are exposed to the Mobile Client that are Retrieve Data Service and Customer Activity Service. The Customer Activity Service interface is given by the  Customer Control Activity component, that is able to direct the activities among User, Authority and Authority Member and to manage the Login and Registration/Authentication Processes. For the User, the Customer Control Activity component will show all the component interfaces referring to the SafeStreets application. First of all for the User there is the Profile Manager component which its Profile Service interface is used to manage the User Profile. The Request Manager component interface to manage specific Data Request Access, infact it interfaces through Statistics Data Service to the Statistics Data Manager component and through Notification Service interface to the Notification Manager component. User are able to interface to the Notification Component and then notify the Authority Member about a violation, through the specific interface Violation Data Service. The User can also complete  info about a violation during the Notification phase,like time, and position using a maps API thanks to the component Device Data Manager and its interface Data Service. The Customer Control Activity component gives to the Authority Member the possibility to access more components than the User. AM can access to the interface Profile Service and the Request Service in order to access to the respective components. Using the interface Profile Service AM can, more respect than the user, set his Availability Status thanks to the interface Availability Status Service and its component Availability Status Manager. AM can also manage in an efficient way the violation and takes info about Statistics respectively through the interface Violation Service and Statistics Data Service and respectively interfaces.
+The Customer Control Activity component also exploit the interfaces relative to the Authority. Authority can access also the interface Profile Service, manage requests thanks to the Request Service interface and manage its list thanks to the AM List Service Interface. Moreover the Authority can manage the tickets thanks to the Ticket Service.
+In order to pursuit their goal every components need to communicate with the DBMS.
+
+
+\begin{center}
+\includegraphics[scale=0.59]{Images/componentMobile.jpg}
+
+\vspace{2mm}
+Figure 2.4: SafeStreets Mobile Services projection.
+\end{center}
+
+
+\subsubsection{Authority Web Services projection}
+\vspace{5mm}
+In the component diagram of the Authority Web Services subsystem are presented the principal components and interfaces. At the first sight there is the Authority Profile Manager that act as the main component and exposes the Authority Web Service interface to the Web Client in order to fullfill the purpose of the application exploiting the interfaces of the Data Request Manager, Ticket Manager and the AM List Manager.The Data Request Manager is intended to perform the Data Access Request, the Ticket Manager provides the feature for managing a ticket’s emission and the AM List Manager component to organize and modify the table lists about the authority’s employeees. Certainlty all the components of the subsystem needs to communicate with the DBMS.
+\begin{center}
+\includegraphics[scale=0.59]{Images/componentWebA.jpg}
+\vspace{2mm}
+Figure 2.5: Authority Web Services projection.
+\end{center}
+\vspace{3mm}
+\subsubsection{System Manager Web Services projection}
+\begin{center}
+\includegraphics[scale=0.59]{Images/componentWebSM.jpg}
+
+\vspace{2mm}
+Figure 2.6: System Manager Web Services projection.
+\end{center}
+\vspace{3mm}
+
+\newpage
+\subsection{Deployment View}
+\vspace{5mm}
+
+\newpage
+\subsection{Runtime View}
+\newpage
+\subsection{Component Interfaces}
+\newpage
+\section{User Interface Design}
+\hrule
+\newpage
+
+\newpage
+\section{Requirements Tracebility}
+\hrule
+\vspace{5mm}
+While making the design choices presented in this document, the aim is to accomplish all the goals and requirements that have been previously specified in RASD. Below are listed the design components to which requirements and goals are mapped: 
+
+
+
+\end{document}
