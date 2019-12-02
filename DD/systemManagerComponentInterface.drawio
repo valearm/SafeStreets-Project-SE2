@@ -1,0 +1,60 @@
+<mxfile host="www.draw.io" modified="2019-12-02T15:08:22.800Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0" etag="JhVGSwFR__wnPUv3soJt" version="12.3.4" type="github" pages="1">
+  <diagram name="Page-1" id="c4acf3e9-155e-7222-9cf6-157b1a14988f">
+    <mxGraphModel dx="1746" dy="514" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="5d2195bd80daf111-12" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;SystemDataService&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp; checkFiscalCode(fiscalCode: String): Boolean&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp; checkMajorityAge(birthdate: Date): Boolean&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp; checkField(name: String): Boolean&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp; checkUniqueCode(uniueCode: String) Boolean&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1" parent="1" vertex="1">
+          <mxGeometry x="-490" y="90" width="280" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="5d2195bd80daf111-18" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;SystemManagerService&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp; systemManagerLogin(username: String, password: String): LoginStatus&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1" parent="1" vertex="1">
+          <mxGeometry x="-130" y="440" width="390" height="63" as="geometry"/>
+        </mxCell>
+        <mxCell id="5d2195bd80daf111-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;labelBackgroundColor=none;startFill=0;endArrow=open;endFill=0;endSize=10;fontFamily=Verdana;fontSize=10;exitX=0.513;exitY=-0.014;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="5d2195bd80daf111-18" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"/>
+            <mxPoint x="70" y="439.5" as="sourcePoint"/>
+            <mxPoint x="70" y="250" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5d2195bd80daf111-19" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;SystemAMListDataService&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp; deleteAuthority(authorityID: String): Boolean&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp; deleteAuthorityMember(authorityMemberID: String, authorityID: String): Boolean&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp; addNewAuthorityMember(authorityID: String):Boolean&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp; updateAuthorityMemberPersonalData(fieldName, value): am: AuthorityMember&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp; updateAuthorityData(fieldName, value): a: Authority&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp; addFildToList(fieldName: String, dataType: String): Void&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp; removeFiledToList(fieldName: String): Boolean&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1" parent="1" vertex="1">
+          <mxGeometry x="350" y="75" width="470" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="5d2195bd80daf111-20" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;SystemStatisticService&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp; updateStatistics(newStatistic: Statistics): Boolean&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp; resetStatistics(statisticID: String): Void&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp; addNewZone(cityID: String, position[]: Position, zoneName: String): Void&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp; updateZoneLimits(position[]: Position): Void&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp; updateZone(fieldName: String, value: String): zone: Zone&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp; removeZone(fieldID: String): Void&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp; addFilter(filterName: String): Void&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp; removeFilter(filterName: String): Void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1" parent="1" vertex="1">
+          <mxGeometry x="-140" y="65" width="410" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="s36P4UgbO5DQNXLdaXkT-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;labelBackgroundColor=none;startFill=0;endArrow=open;endFill=0;endSize=10;fontFamily=Verdana;fontSize=10;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" target="5d2195bd80daf111-12" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-20" y="346"/>
+              <mxPoint x="-350" y="346"/>
+            </Array>
+            <mxPoint x="-20" y="439.8571428571429" as="sourcePoint"/>
+            <mxPoint x="-20" y="251.28571428571433" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s36P4UgbO5DQNXLdaXkT-6" value="&amp;lt;&amp;lt;use&amp;gt;&amp;gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];;labelBackgroundColor=#ffffff;" parent="s36P4UgbO5DQNXLdaXkT-3" vertex="1" connectable="0">
+          <mxGeometry x="0.0877" y="2" relative="1" as="geometry">
+            <mxPoint x="3.5" y="-10.5" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s36P4UgbO5DQNXLdaXkT-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;labelBackgroundColor=none;startFill=0;endArrow=open;endFill=0;endSize=10;fontFamily=Verdana;fontSize=10;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" target="5d2195bd80daf111-19" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="346"/>
+              <mxPoint x="586" y="346"/>
+            </Array>
+            <mxPoint x="160" y="439.78571428571445" as="sourcePoint"/>
+            <mxPoint x="-170" y="199.78571428571433" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s36P4UgbO5DQNXLdaXkT-7" value="&amp;lt;&amp;lt;use&amp;gt;&amp;gt;" style="text;html=1;" parent="1" vertex="1">
+          <mxGeometry x="372" y="324" width="40" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="s36P4UgbO5DQNXLdaXkT-8" value="&amp;lt;&amp;lt;use&amp;gt;&amp;gt;" style="text;html=1;labelBackgroundColor=#ffffff;" parent="1" vertex="1">
+          <mxGeometry x="45" y="340" width="40" height="28" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
